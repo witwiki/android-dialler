@@ -17,54 +17,64 @@
 
         <EditText
             android:id="@+id/num_view"
+            style="@style/Widget.AppCompat.EditText"
             android:layout_width="300dp"
             android:layout_height="60dp"
             android:textSize="40sp" />
 
         <Button
             android:id="@+id/delBtn"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="60dp"
+            style="@android:style/Widget.Button.Inset"
+            android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:layout_weight="0.58"
             android:text="@string/bakspace"
             android:textAlignment="center"
-            android:textSize="30sp"
-            android:layout_weight="0.58" />
+            android:textSize="30sp" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/text_layout"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/eins"
+                style="@android:style/Widget.Button.Inset"
                 android:layout_width="128dp"
                 android:layout_height="80dp"
+                android:layout_margin="5dp"
                 android:text="1"
                 android:textSize="40sp" />
 
             <Button
                 android:id="@+id/zwei"
+                style="@android:style/Widget.Button.Inset"
                 android:layout_width="128dp"
                 android:layout_height="80dp"
+                android:layout_margin="5dp"
                 android:text="2"
                 android:textSize="40sp" />
 
             <Button
                 android:id="@+id/drei"
+                style="@android:style/Widget.Button.Inset"
                 android:layout_width="128dp"
                 android:layout_height="80dp"
+                android:layout_margin="5dp"
                 android:text="3"
                 android:textSize="40sp" />
 
@@ -77,22 +87,28 @@
 
             <Button
                 android:id="@+id/vier"
+                style="@android:style/Widget.Button.Inset"
                 android:layout_width="128dp"
                 android:layout_height="80dp"
+                android:layout_margin="5dp"
                 android:text="4"
                 android:textSize="40sp" />
 
             <Button
                 android:id="@+id/funf"
+                style="@android:style/Widget.Button.Inset"
                 android:layout_width="128dp"
                 android:layout_height="80dp"
+                android:layout_margin="5dp"
                 android:text="5"
                 android:textSize="40sp" />
 
             <Button
                 android:id="@+id/sechs"
+                style="@android:style/Widget.Button.Inset"
                 android:layout_width="128dp"
                 android:layout_height="80dp"
+                android:layout_margin="5dp"
                 android:text="6"
                 android:textSize="40sp" />
 
@@ -105,22 +121,28 @@
 
             <Button
                 android:id="@+id/sieben"
+                style="@android:style/Widget.Button.Inset"
                 android:layout_width="128dp"
                 android:layout_height="80dp"
+                android:layout_margin="5dp"
                 android:text="7"
                 android:textSize="40sp" />
 
             <Button
                 android:id="@+id/acht"
+                style="@android:style/Widget.Button.Inset"
                 android:layout_width="128dp"
                 android:layout_height="80dp"
+                android:layout_margin="5dp"
                 android:text="8"
                 android:textSize="40sp" />
 
             <Button
                 android:id="@+id/neun"
+                style="@android:style/Widget.Button.Inset"
                 android:layout_width="128dp"
                 android:layout_height="80dp"
+                android:layout_margin="5dp"
                 android:text="9"
                 android:textSize="40sp" />
 
@@ -133,22 +155,28 @@
 
             <Button
                 android:id="@+id/starBtn"
+                style="@android:style/Widget.Button.Inset"
                 android:layout_width="128dp"
                 android:layout_height="80dp"
+                android:layout_margin="5dp"
                 android:text="*"
                 android:textSize="40sp" />
 
             <Button
                 android:id="@+id/nullBtn"
+                style="@android:style/Widget.Button.Inset"
                 android:layout_width="128dp"
                 android:layout_height="80dp"
+                android:layout_margin="5dp"
                 android:text="0"
                 android:textSize="40sp" />
 
             <Button
                 android:id="@+id/hashBtn"
+                style="@android:style/Widget.Button.Inset"
                 android:layout_width="128dp"
                 android:layout_height="80dp"
+                android:layout_margin="5dp"
                 android:text="#"
                 android:textSize="40sp" />
 
@@ -156,13 +184,15 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="130dp"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/anruf"
-                android:layout_width="200dp"
-                android:layout_height="120dp"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
                 android:layout_weight="1"
                 android:text="CALL"
                 android:textSize="30sp" />

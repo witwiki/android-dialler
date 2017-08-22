@@ -3,17 +3,11 @@ package com.example.dialer;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.net.Uri;
-import android.os.Build;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.telecom.Call;
-import android.util.Config;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     // Request Code variable for CALL_PHONE permissions (Choice of a random integer as long as it is >=0)
     private static final int CALL_PERMISSION_CODE = 1;
 
-    // EditText for viewing the phone number
+    // Declarations for EditText, Buttons and String of edit text to manipulate
     EditText numView;
     Button b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, delBtn, starBtn, hashBtn, callBtn;
     String phNum = " ";
@@ -37,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         // Generic private method to request Dangerous Permissions (in this case, "CALL_PHONE")
         getUserPermission(Manifest.permission.CALL_PHONE, CALL_PERMISSION_CODE);
 
-        // Type casting layout id to java edit text instance variable
+        // Type casting layout elements to variables in Main Activity
         numView = (EditText) findViewById(R.id.num_view);
         b0 = (Button) findViewById(R.id.nullBtn);
         b1 = (Button) findViewById(R.id.eins);
@@ -54,10 +48,13 @@ public class MainActivity extends AppCompatActivity {
         hashBtn = (Button) findViewById(R.id.hashBtn);
         callBtn = (Button)findViewById(R.id.anruf);
 
+        //  Get text from Edit Text --> Convert to string and place in 'phNum' String variable
         phNum = numView.getText().toString();
 
-
-        //  Click Listeners for all Dial Keys
+        /*
+            Click Listeners for all Dial Keys for keys 0 through to 9;
+            '*'; '#'; backspace & Call btns
+         */
         b0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -166,12 +163,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //  Delete Button
+        //  Click Listener for the Delete Button
         delBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String builtStr;
+                //  Check length of EditText box is greater than zero
                 if(numView.getText().length()>0){
+                    // If larger than zero
                     StringBuilder stringBuilder = new StringBuilder(numView.getText());
                     stringBuilder.deleteCharAt(numView.getText().length() - 1);
                     builtStr = stringBuilder.toString();
@@ -181,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //  Call Button
+        //  Click Listener for the Call Button
         callBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -209,16 +208,6 @@ public class MainActivity extends AppCompatActivity {
     }
     */
 
-    /*
-    //  Removes the Last Character in the String
-    public static String removeLastNum(String s){
-        if (s == null || s.length()== 0){
-            return null;
-        } else {
-            return (s.substring(0, s.length() - 1));
-        }
-    }*/
-
 /*
     public boolean isPermissionGranted(){
         if (Build.VERSION.SDK_INT >= 23){
@@ -235,16 +224,6 @@ public class MainActivity extends AppCompatActivity {
             Log.v("TAG", "Permission is GRANTED");
             return true;
         }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestedCode, String requestedPerms[], int[] grantResults){
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                Toast.makeText(getApplicationContext(), "Permission Granted", Toast.LENGTH_SHORT).show();
-                placeCall();
-            } else {
-                Toast.makeText(getApplicationContext(), "Permission Denied", Toast.LENGTH_SHORT).show();
-            }
     }
 
 */
@@ -286,68 +265,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-/*
-    // Switch Case statement within a Try-Catch
-    public void dialingEvent(View v){
-        try{
-            switch (v.getId()){
-                case R.id.starBtn:
-                    phNum += "*";
-                    numView.setText(phNum);
-                    break;
-                case R.id.hashBtn:
-                    phNum += "#";
-                    numView.setText(phNum);
-                    break;
-                case R.id.nullBtn:
-                    phNum += "0";
-                    numView.setText(phNum);
-                    break;
-                case R.id.eins:
-                    phNum += "1";
-                    numView.setText(phNum);
-                    break;
-                case R.id.zwei:
-                    phNum += "2";
-                    numView.setText(phNum);
-                    break;
-                case R.id.drei:
-                    phNum += "3";
-                    numView.setText(phNum);
-                    break;
-                case R.id.funf:
-                    phNum += "4";
-                    numView.setText(phNum);
-                    break;
-                case R.id.vier:
-                    phNum += "5";
-                    numView.setText(phNum);
-                    break;
-                case R.id.sechs:
-                    phNum += "6";
-                    numView.setText(phNum);
-                    break;
-                case R.id.sieben:
-                    phNum += "7";
-                    numView.setText(phNum);
-                    break;
-                case R.id.acht:
-                    phNum += "8";
-                    numView.setText(phNum);
-                    break;
-                case R.id.neun:
-                    phNum += "9";
-                    numView.setText(phNum);
-                    break;
-                case R.id.delBtn:
-                    if (phNum != null && phNum.length() > 0){
-                        phNum = phNum.substring(0, phNum.length() - 1);
-                    }
-                    numView.setText(phNum);
-                    break;
-            }
-        } catch (Exception ex) {
-        }
-    }
-    */
 }
