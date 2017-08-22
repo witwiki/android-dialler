@@ -3,6 +3,7 @@ package com.example.dialer;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.telecom.Call;
+import android.util.Config;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -193,6 +195,19 @@ public class MainActivity extends AppCompatActivity {
         intent.setData(Uri.parse("tel:" + phNum));
         startActivity(intent);
     }
+
+    /*
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
+            Toast.makeText(MainActivity.this, "Landscape", Toast.LENGTH_SHORT).show();
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            Toast.makeText(MainActivity.this, "Portrait", Toast.LENGTH_SHORT).show();
+        }
+    }
+    */
 
     /*
     //  Removes the Last Character in the String
