@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     // EditText for viewing the phone number
     EditText numView;
     Button b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, delBtn, starBtn, hashBtn, callBtn;
-    String phNum = "";
+    String phNum = " ";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         hashBtn = (Button) findViewById(R.id.hashBtn);
         callBtn = (Button)findViewById(R.id.anruf);
 
-//        phNum = numView.getText().toString();
+        phNum = numView.getText().toString();
 
 
         //  Click Listeners for all Dial Keys
@@ -168,7 +168,14 @@ public class MainActivity extends AppCompatActivity {
         delBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                numView.setText(removeLastNum(phNum));
+                String builtStr;
+                if(numView.getText().length()>0){
+                    StringBuilder stringBuilder = new StringBuilder(numView.getText());
+                    stringBuilder.deleteCharAt(numView.getText().length() - 1);
+                    builtStr = stringBuilder.toString();
+                    phNum = "" + builtStr;
+                    numView.setText(phNum);
+                }
             }
         });
 
@@ -187,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    /*
     //  Removes the Last Character in the String
     public static String removeLastNum(String s){
         if (s == null || s.length()== 0){
@@ -194,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             return (s.substring(0, s.length() - 1));
         }
-    }
+    }*/
 
 /*
     public boolean isPermissionGranted(){
