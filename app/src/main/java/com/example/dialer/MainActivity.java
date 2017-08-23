@@ -4,14 +4,24 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+/*
+*
+*   @author: Vikram Udyawer (04316827)
+*   @date: 23rd August 2017
+*   @summary: A Single Activity Dialer Application
+*
+* */
 
 public class MainActivity extends AppCompatActivity {
 
@@ -209,22 +219,29 @@ public class MainActivity extends AppCompatActivity {
 
     // Generic private method to request Dangerous Permissions (in this case, "CALL_PHONE")
     private void getUserPermission(String requestedPerm, Integer requestedCode){
-        //  Checking to see with the Permission(s) is Granted or Not
-        //  If Permission(s) is NOT GRANTED
-        if (ContextCompat.checkSelfPermission(MainActivity.this, requestedPerm) != PackageManager.PERMISSION_GRANTED){
-            // Check to see the user has denied permission(s) previously
-            if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, requestedPerm)){
-                //  Ask permission again in the case the user has denied permissions previously (as it is an important Permission)
-                ActivityCompat.requestPermissions(MainActivity.this, new String[]{requestedPerm}, requestedCode);
+        //  Checking if the Build version is API greater than 22
+        if ((Build.VERSION.SDK_INT > 22)){
+            //  Checking to see with the Permission(s) is Granted or Not
+            //  If Permission(s) is NOT GRANTED
+            if (ContextCompat.checkSelfPermission(MainActivity.this, requestedPerm) != PackageManager.PERMISSION_GRANTED){
+                Log.v("TAG","Permission is granted");
+                // Check to see the user has denied permission(s) previously
+                if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, requestedPerm)){
+                    //  Ask permission again in the case the user has denied permissions previously (as it is an important Permission)
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[]{requestedPerm}, requestedCode);
+                }
+                //  If Permission was Not Denied previously, a request is made
+                else {
+                    ActivityCompat.requestPermissions(MainActivity.this, new String[] {requestedPerm}, requestedCode);
+                }
             }
-            //  If Permission was Not Denied previously, a request is made
+            //  If Permission(s) GRANTED we add a message to say the Permission was granted
             else {
-                ActivityCompat.requestPermissions(MainActivity.this, new String[] {requestedPerm}, requestedCode);
+                Toast.makeText(this, "" + requestedPerm + " is already granted", Toast.LENGTH_SHORT).show();
             }
-        }
-        //  If Permission(s) GRANTED we add a message to say the Permission was granted
-        else {
-            Toast.makeText(this, "" + requestedPerm + " is already granted", Toast.LENGTH_SHORT).show();
+        } else {
+            //  If build is lower than 23 then Permission requested and granted during app install
+            Log.v("TAG","Permission is granted");
         }
     }
 
