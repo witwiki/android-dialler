@@ -21,12 +21,15 @@ public class MainActivity extends AppCompatActivity {
     // Declarations for EditText, Buttons and String of edit text to manipulate
     EditText numView;
     Button b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, delBtn, starBtn, hashBtn, callBtn;
-    String phNum = " ";
+    String phNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // To handle change in device rotation
+        //onConfigurationChanged(Configuration newConfig)
 
         // Generic private method to request Dangerous Permissions (in this case, "CALL_PHONE")
         getUserPermission(Manifest.permission.CALL_PHONE, CALL_PERMISSION_CODE);
@@ -170,11 +173,16 @@ public class MainActivity extends AppCompatActivity {
                 String builtStr;
                 //  Check length of EditText box is greater than zero
                 if(numView.getText().length()>0){
-                    // If larger than zero
+                    // If length larger than zero create new String Builder initialised with character sequence
                     StringBuilder stringBuilder = new StringBuilder(numView.getText());
+                    // Get length odf character sequence and delete the last character in the index
+                    // Remove char at given index position
                     stringBuilder.deleteCharAt(numView.getText().length() - 1);
+                    // convert the character sequence to a string
                     builtStr = stringBuilder.toString();
+                    //  append string to phNum string
                     phNum = "" + builtStr;
+                    //  set phNum string to EditText variable to display
                     numView.setText(phNum);
                 }
             }
@@ -189,45 +197,15 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /*
+        Method to call the Intent for ACTION_CALL; setting URI
+        and starting the activity
+     */
     public void placeCall(){
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:" + phNum));
         startActivity(intent);
     }
-
-    /*
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-
-        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE){
-            Toast.makeText(MainActivity.this, "Landscape", Toast.LENGTH_SHORT).show();
-        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
-            Toast.makeText(MainActivity.this, "Portrait", Toast.LENGTH_SHORT).show();
-        }
-    }
-    */
-
-/*
-    public boolean isPermissionGranted(){
-        if (Build.VERSION.SDK_INT >= 23){
-            if (checkSelfPermission(Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED){
-                Log.v("TAG", "Permission is GRANTED");
-                return true;
-            } else {
-                Log.v("TAG", "Permission is REVOKED");
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 1);
-                return false;
-            }
-        } else {
-            //  Automatic Granting Permissions on APIs < 23 on app installation
-            Log.v("TAG", "Permission is GRANTED");
-            return true;
-        }
-    }
-
-*/
-
 
     // Generic private method to request Dangerous Permissions (in this case, "CALL_PHONE")
     private void getUserPermission(String requestedPerm, Integer requestedCode){
@@ -250,15 +228,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //  Method to handle a requested permission
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        //  Switch case statement is used to handle multiple request permission codes (if needed)
         switch (requestCode){
+            //  Permission code for CALL_PHONE
             case CALL_PERMISSION_CODE: {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                     if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED){
                         Toast.makeText(MainActivity.this, "Permission Granted", Toast.LENGTH_SHORT).show();
                     }
                 } else {
+                    //  Permission Denied
                     Toast.makeText(MainActivity.this, "Permission Denied", Toast.LENGTH_SHORT).show();
                     finish();
                 }

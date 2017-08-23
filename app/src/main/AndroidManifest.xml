@@ -14,12 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--    Forcing Soft Keyboard Hiding with "stateHidden"
-                Screen has been forced to be oriented in "portrait"
+        <!--
+                NOTES TO ASSESSOR:
+                ==================
+                - Forcing Soft Keyboard Hiding with "stateHidden"
+                - Screen has been forced to be oriented in "portrait"
+                android:screenOrientation="portrait"
         -->
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,16 @@
-<RelativeLayout
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    NOTES TO ASSESSOR:
+    ==================
+
+    - Scroll View was added here to accommodate landscape mode
+    - Dial Keys and Call button initially disappeared on
+    landscape mode
+    - At first I restricted orientation to portrait mode even
+    on landscape since most dialer (at least on my phone)
+    restricts orientation (this code is commented in the Manifest)
+-->
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -6,199 +18,211 @@
     tools:context="com.example.dialer.MainActivity">
 
     <LinearLayout
-        android:id="@+id/text_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:weightSum="1">
-
-        <EditText
-            android:id="@+id/num_view"
-            style="@style/Widget.AppCompat.EditText"
-            android:layout_width="300dp"
-            android:layout_height="60dp"
-            android:textSize="40sp" />
-
-        <Button
-            android:id="@+id/delBtn"
-            style="@android:style/Widget.Button.Inset"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:layout_weight="0.58"
-            android:text="@string/bakspace"
-            android:textAlignment="center"
-            android:textSize="30sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/text_layout"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/text_layout"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:weightSum="1">
 
-            <Button
-                android:id="@+id/eins"
-                style="@android:style/Widget.Button.Inset"
-                android:layout_width="128dp"
-                android:layout_height="80dp"
-                android:layout_margin="5dp"
-                android:text="1"
+            <EditText
+                android:id="@+id/num_view"
+                style="@style/Widget.AppCompat.EditText"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
                 android:textSize="40sp" />
 
             <Button
-                android:id="@+id/zwei"
+                android:id="@+id/delBtn"
                 style="@android:style/Widget.Button.Inset"
-                android:layout_width="128dp"
-                android:layout_height="80dp"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
                 android:layout_margin="5dp"
-                android:text="2"
-                android:textSize="40sp" />
-
-            <Button
-                android:id="@+id/drei"
-                style="@android:style/Widget.Button.Inset"
-                android:layout_width="128dp"
-                android:layout_height="80dp"
-                android:layout_margin="5dp"
-                android:text="3"
-                android:textSize="40sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/vier"
-                style="@android:style/Widget.Button.Inset"
-                android:layout_width="128dp"
-                android:layout_height="80dp"
-                android:layout_margin="5dp"
-                android:text="4"
-                android:textSize="40sp" />
-
-            <Button
-                android:id="@+id/funf"
-                style="@android:style/Widget.Button.Inset"
-                android:layout_width="128dp"
-                android:layout_height="80dp"
-                android:layout_margin="5dp"
-                android:text="5"
-                android:textSize="40sp" />
-
-            <Button
-                android:id="@+id/sechs"
-                style="@android:style/Widget.Button.Inset"
-                android:layout_width="128dp"
-                android:layout_height="80dp"
-                android:layout_margin="5dp"
-                android:text="6"
-                android:textSize="40sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/sieben"
-                style="@android:style/Widget.Button.Inset"
-                android:layout_width="128dp"
-                android:layout_height="80dp"
-                android:layout_margin="5dp"
-                android:text="7"
-                android:textSize="40sp" />
-
-            <Button
-                android:id="@+id/acht"
-                style="@android:style/Widget.Button.Inset"
-                android:layout_width="128dp"
-                android:layout_height="80dp"
-                android:layout_margin="5dp"
-                android:text="8"
-                android:textSize="40sp" />
-
-            <Button
-                android:id="@+id/neun"
-                style="@android:style/Widget.Button.Inset"
-                android:layout_width="128dp"
-                android:layout_height="80dp"
-                android:layout_margin="5dp"
-                android:text="9"
-                android:textSize="40sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/starBtn"
-                style="@android:style/Widget.Button.Inset"
-                android:layout_width="128dp"
-                android:layout_height="80dp"
-                android:layout_margin="5dp"
-                android:text="*"
-                android:textSize="40sp" />
-
-            <Button
-                android:id="@+id/nullBtn"
-                style="@android:style/Widget.Button.Inset"
-                android:layout_width="128dp"
-                android:layout_height="80dp"
-                android:layout_margin="5dp"
-                android:text="0"
-                android:textSize="40sp" />
-
-            <Button
-                android:id="@+id/hashBtn"
-                style="@android:style/Widget.Button.Inset"
-                android:layout_width="128dp"
-                android:layout_height="80dp"
-                android:layout_margin="5dp"
-                android:text="#"
-                android:textSize="40sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/anruf"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:text="CALL"
+                android:layout_weight="0.58"
+                android:text="@string/bakspace"
+                android:textAlignment="center"
                 android:textSize="30sp" />
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/text_layout"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/eins"
+                    style="@android:style/Widget.Button.Inset"
+                    android:layout_width="128dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="5dp"
+                    android:text="1"
+                    android:textSize="40sp" />
+
+                <Button
+                    android:id="@+id/zwei"
+                    style="@android:style/Widget.Button.Inset"
+                    android:layout_width="128dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="5dp"
+                    android:text="2"
+                    android:textSize="40sp" />
+
+                <Button
+                    android:id="@+id/drei"
+                    style="@android:style/Widget.Button.Inset"
+                    android:layout_width="128dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="5dp"
+                    android:text="3"
+                    android:textSize="40sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/vier"
+                    style="@android:style/Widget.Button.Inset"
+                    android:layout_width="128dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="5dp"
+                    android:text="4"
+                    android:textSize="40sp" />
+
+                <Button
+                    android:id="@+id/funf"
+                    style="@android:style/Widget.Button.Inset"
+                    android:layout_width="128dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="5dp"
+                    android:text="5"
+                    android:textSize="40sp" />
+
+                <Button
+                    android:id="@+id/sechs"
+                    style="@android:style/Widget.Button.Inset"
+                    android:layout_width="128dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="5dp"
+                    android:text="6"
+                    android:textSize="40sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/sieben"
+                    style="@android:style/Widget.Button.Inset"
+                    android:layout_width="128dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="5dp"
+                    android:text="7"
+                    android:textSize="40sp" />
+
+                <Button
+                    android:id="@+id/acht"
+                    style="@android:style/Widget.Button.Inset"
+                    android:layout_width="128dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="5dp"
+                    android:text="8"
+                    android:textSize="40sp" />
+
+                <Button
+                    android:id="@+id/neun"
+                    style="@android:style/Widget.Button.Inset"
+                    android:layout_width="128dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="5dp"
+                    android:text="9"
+                    android:textSize="40sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/starBtn"
+                    style="@android:style/Widget.Button.Inset"
+                    android:layout_width="128dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="5dp"
+                    android:text="*"
+                    android:textSize="40sp" />
+
+                <Button
+                    android:id="@+id/nullBtn"
+                    style="@android:style/Widget.Button.Inset"
+                    android:layout_width="128dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="5dp"
+                    android:text="0"
+                    android:textSize="40sp" />
+
+                <Button
+                    android:id="@+id/hashBtn"
+                    style="@android:style/Widget.Button.Inset"
+                    android:layout_width="128dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="5dp"
+                    android:text="#"
+                    android:textSize="40sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/anruf"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="400dp"
+                    android:layout_height="140dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:text="CALL"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
     </LinearLayout>
 
-</RelativeLayout>
+</ScrollView>
