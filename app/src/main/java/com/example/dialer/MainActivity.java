@@ -31,15 +31,15 @@ public class MainActivity extends AppCompatActivity {
     // Declarations for EditText, Buttons and String of edit text to manipulate
     EditText numView;
     Button b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, delBtn, starBtn, hashBtn, callBtn;
-    String phNum;
+    private String phNum;
+
+    //  Key to save the String during state changes
+    private static final String DISPLAYED_PHONE_NUMBER = "displayedPhoneNumber";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // To handle change in device rotation
-        //onConfigurationChanged(Configuration newConfig)
 
         // Generic private method to request Dangerous Permissions (in this case, "CALL_PHONE")
         getUserPermission(Manifest.permission.CALL_PHONE, CALL_PERMISSION_CODE);
@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
         phNum = numView.getText().toString();
 
         /*
-            Click Listeners for all Dial Keys for keys 0 through to 9;
-            '*'; '#'; backspace & Call btns
+            Below are 14 Click Listeners for all Dial Keys from keys 0 through to 9;
+            '*'; '#'; backspace & Call buttons
          */
         b0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,12 +205,30 @@ public class MainActivity extends AppCompatActivity {
                 placeCall();
             }
         });
+
+
+        ////  Restoring savedInstanceState on any Hardware Configuration Change (such as device rotation)
+        if (savedInstanceState != null){
+            phNum = (String)savedInstanceState.get(DISPLAYED_PHONE_NUMBER);
+            Log.d("TAG", "Restored instance state: phNum => " + phNum);
+        }
+
+
+    }   /// End of onCreate()
+
+    //  Saving Activity state on any Hardware Configuration Change (such as device rotation)
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putSerializable(DISPLAYED_PHONE_NUMBER, phNum);
     }
 
+
     /*
-        Method to call the Intent for ACTION_CALL; setting URI
-        and starting the activity
-     */
+       Method to call the Intent for ACTION_CALL; setting URI
+       and starting the activity
+    */
     public void placeCall(){
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:" + phNum));
